@@ -1,4 +1,6 @@
 
+import { BaseEntity } from 'src/modules/base/base.entity';
+import { Product } from 'src/modules/product/entities/product.entity';
 import {
   Column,
   Entity,
@@ -9,7 +11,7 @@ import {
 } from 'typeorm';
 
 @Entity('Category')
-export class Category {
+export class Category extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,4 +31,6 @@ export class Category {
   @JoinColumn({ name: 'parentId' })
   children: Category[];
 
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }

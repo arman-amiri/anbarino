@@ -46,7 +46,6 @@ export class CategoryService {
   ): Promise<Category> {
     try {
       const { title, parentId } = updateCategoryDto;
-      if (!title) throw 'عنوان دسته بندی لازم است'; // TODO
       const category = await this.categoryRepository.findOneBy({ id });
       if (!category) throw new NotFoundException('دسته‌بندی یافت نشد');
       category.title = title;
